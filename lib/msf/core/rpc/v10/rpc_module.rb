@@ -16,6 +16,10 @@ class RPC_Module < RPC_Base
     { "modules" => self.framework.exploits.keys }
   end
 
+  # Returns a list of exploit names which support check method. The 'exploit/' prefix will not be included.
+  def rpc_pocs
+    { "modules" => self.framework.exploits.keys.select{ |key| _find_module("exploit", key).class.method_defined? :check } }
+  end
 
   # Returns a list of evasion module names. The 'evasion/' prefix will not be included.
   #
@@ -275,6 +279,31 @@ class RPC_Module < RPC_Base
     res['options'] = opts
 
     res
+  end
+
+  def get_kind(clazz)
+    for c in clazz.ancestors
+      name = c.name
+      if name == "Msf::Exploit::Local"
+        return name
+      end
+      if name == "Msf::Exploit::Remote"
+        return name
+      end
+      if name == "Msf::Exploit::Omni"
+        return name
+      end
+    end
+  end
+
+  # Get source of a module.
+  def rpc_source(mtype, mname)
+    m = _find_module(mtype, mname)
+    clazz = m.class
+    code = File.read(clazz.file_path)
+    check = clazz.method_defined? :check
+    exploit = clazz.method_defined? :exploit
+    {code: code, check: check, exploit: exploit, kind: get_kind(clazz).split("::").last }
   end
 
   def module_short_info(m)
