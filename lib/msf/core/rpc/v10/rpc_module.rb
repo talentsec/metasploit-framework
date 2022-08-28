@@ -294,6 +294,7 @@ class RPC_Module < RPC_Base
         return name
       end
     end
+    nil
   end
 
   # Get source of a module.
@@ -303,7 +304,13 @@ class RPC_Module < RPC_Base
     code = File.read(clazz.file_path)
     check = clazz.method_defined? :check
     exploit = clazz.method_defined? :exploit
-    {code: code, check: check, exploit: exploit, kind: get_kind(clazz).split("::").last }
+    kind = get_kind(clazz)
+    kind = if kind.nil?
+      nil
+    else
+      kind.split("::").last
+    end
+    {code: code, check: check, exploit: exploit, kind: kind}
   end
 
   def module_short_info(m)
