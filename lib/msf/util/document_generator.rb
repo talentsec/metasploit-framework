@@ -75,6 +75,30 @@ module Msf
         n.get_md_content(items, kb).force_encoding('UTF-8')
       end
 
+
+      # Returns a module documentation in string.
+      #
+      # @param mod [Msf::Module] Module to create document for.
+      # @return [void]
+      def self.get_module_document_raw(mod)
+        kb_path = nil
+        kb = ''
+
+        user_path = File.join(PullRequestFinder::USER_MANUAL_BASE_PATH, "#{mod.fullname}.md")
+        global_path = File.join(PullRequestFinder::MANUAL_BASE_PATH, "#{mod.fullname}.md")
+
+        if File.exists?(user_path)
+          kb_path = user_path
+        elsif File.exists?(global_path)
+          kb_path = global_path
+        end
+
+        unless kb_path.nil?
+          File.open(kb_path, 'rb') { |f| kb = f.read }
+        end
+
+        kb
+      end
     end
   end
 end

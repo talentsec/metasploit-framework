@@ -203,6 +203,16 @@ class RPC_Module < RPC_Base
     Msf::Util::DocumentGenerator.get_module_document(m)
   end
 
+  # Returns documentation about a module in HTML.
+  #
+  # @return [String] documentation string.
+  # @example Here's how you would use this from the client:
+  #  rpc.call('module.documentation', 'exploit', 'windows/smb/ms08_067_netapi')
+  def rpc_documentation(mtype, mname)
+    m = _find_module(mtype, mname)
+    Msf::Util::DocumentGenerator.get_module_document_raw(m)
+  end
+
 
   # Returns the metadata for a module.
   #
