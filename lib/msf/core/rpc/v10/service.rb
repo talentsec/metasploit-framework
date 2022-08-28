@@ -140,7 +140,13 @@ class Service
         end
       end
 
-      ::Timeout.timeout(self.dispatcher_timeout) { self.handlers[group].send(mname, *msg) }
+      timeout = self.dispatcher_timeout
+      
+      if funct == 'check' or funct == 'execute'
+        timeout = msg.last['RPC_EXEC_TIMEOUT'] || timeout
+      end
+
+      ::Timeout.timeout(timeout) { self.handlers[group].send(mname, *msg) }
 
     rescue ::Exception => e
       elog('RPC Exception', error: e)
