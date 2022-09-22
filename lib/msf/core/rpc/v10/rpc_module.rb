@@ -238,7 +238,7 @@ class RPC_Module < RPC_Base
     res['platform'] = m.platform.platforms.map { |x| x.to_s }
     res['authors'] = m.author.map { |a| a.to_s }
     res['privileged'] = m.privileged?
-    res['disclosure_date'] = m.disclosure_date
+    res['disclosure_date'] = m.disclosure_date.strftime("%Y-%m-%d") unless m.disclosure_date.nil?
 
     res['references'] = []
     m.references.each do |r|
