@@ -83,6 +83,10 @@ class Service
       elog('RPC Exception', error: e)
       res.body = process_exception(e).to_msgpack
       res.code = e.code
+    rescue => e
+      p e
+      elog('RPC Exception', error: e)
+      raise e
     end
     cli.send_response(res)
   end
