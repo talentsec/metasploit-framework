@@ -11,6 +11,14 @@
             "program": "${workspaceFolder}/msfrpcd",
             "programArgs": ["-P", "123456", "-f", "-S"],
             "useBundler": false
+        },
+        {
+            "type": "ruby-debug",
+            "request": "launch",
+            "name": "ruby msfconsole",
+            "program": "${workspaceFolder}/msfconsole",
+            "programArgs": ["-q"],
+            "useBundler": false
         }
     ]
 }
