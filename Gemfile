@@ -10,6 +10,8 @@ group :coverage do
 end
 
 group :development do
+  # gem 'readapt'
+
   # Markdown formatting for yard
   gem 'redcarpet'
   # generating documentation

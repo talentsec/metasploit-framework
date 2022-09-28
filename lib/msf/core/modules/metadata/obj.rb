@@ -54,6 +54,12 @@ class Obj
   alias :default_cred? :default_credential # Mirror the Module class
   # @return [Hash]
   attr_reader :notes
+   # @return [Hash]
+  attr_reader :metric
+  # @return [String]
+  attr_reader :affected_version
+  # @return [String]
+  attr_reader :suggestion
   # @return [Array<String>]
   attr_reader :session_types
 
@@ -108,6 +114,10 @@ class Obj
 
     @notes = module_instance.notes
 
+    @metric = module_instance.metric
+    @affected_version = module_instance.affected_version
+    @suggestion = module_instance.suggestion
+
     @session_types = module_instance.respond_to?(:session_types) && module_instance.session_types
 
     # Due to potentially non-standard ASCII we force UTF-8 to ensure no problem with JSON serialization
@@ -143,7 +153,11 @@ class Obj
       'default_credential' => @default_credential,
       'notes'              => @notes,
       'session_types'      => @session_types,
-      'needs_cleanup'      => @needs_cleanup
+      'needs_cleanup'      => @needs_cleanup,
+
+      'metric'             => @metric,
+      'affected_version'   => @affected_version,
+      'suggestion'         => @suggestion
     }.to_json(*args)
   end
 
@@ -194,6 +208,10 @@ class Obj
     @notes              = obj_hash['notes'].nil? ? {} : obj_hash['notes']
     @needs_cleanup      = obj_hash['needs_cleanup']
     @session_types      = obj_hash['session_types']
+
+    @metric             = obj_hash['metric']
+    @affected_version   = obj_hash['affected_version']
+    @suggestion         = obj_hash['suggestion']
 
   end
 

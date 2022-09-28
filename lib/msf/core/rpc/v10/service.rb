@@ -153,6 +153,7 @@ class Service
       ::Timeout.timeout(timeout) { self.handlers[group].send(mname, *msg) }
 
     rescue ::Exception => e
+      # puts e.backtrace.join("\n")
       elog('RPC Exception', error: e)
       process_exception(e)
     end

@@ -289,6 +289,27 @@ class RPC_Module < RPC_Base
     end
     res['options'] = opts
 
+    metric = m.metric
+
+    unless metric.nil?
+      res['metric'] = {
+        'score': metric['Score'],
+        'vector': metric['Vector'],
+        'complexity': metric['Complexity'],
+        'privilege': metric['Privilege'],
+        'scope': metric['Scope'],
+        'maturity': metric['Maturity'],
+        'remediation': metric['Remediation'],
+        'confidentiality': metric['Confidentiality'],
+        'integrity': metric['Integrity'],
+        'harmness': metric['Harmness'],
+        'scale': metric['Scale']
+      }
+    end
+
+    res['affected_version'] = m.affected_version
+    res['suggestion'] = m.suggestion
+
     res
   end
 

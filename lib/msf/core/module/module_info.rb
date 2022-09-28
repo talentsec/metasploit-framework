@@ -47,6 +47,28 @@ module Msf::Module::ModuleInfo
     module_info['Notes']
   end
 
+
+  #
+  # Return the module's metric
+  #
+  def metric
+    module_info['Metric']
+  end
+
+  #
+  # Return the module's affected version
+  #
+  def affected_version
+    module_info['AffectedVersion']
+  end
+
+  #
+  # Return the module's suggestion
+  #
+  def suggestion
+    module_info['Suggestion']
+  end
+
   protected
 
   #

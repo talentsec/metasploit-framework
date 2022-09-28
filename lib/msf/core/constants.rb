@@ -113,6 +113,58 @@ module HttpClients
   UNKNOWN = "Unknown"
 end
 
+module Metric
+  module Vector
+    Network = "Network"
+    Adjecent = "Adjecent"
+    Local = "Local"
+    Physical = "Physical"
+  end
+  
+  module Complexity
+    Low = "Low"
+    High = "High"
+  end
+  
+  module Privilege
+    None = "None"
+    Low = "Low"
+    High = "High"
+  end
+  
+  module Scope
+    Global = "Global"
+    BAC = "BAC"
+  end
+  
+  module Maturity
+    Unproven = "Unproven"
+    Poc = "Poc"
+    Exp = "Exp"
+    Weapon = "Weapon"
+  end
+  
+  module Remediation
+    Notdefined = "Notdefined"
+    Unavailable = "Unavailable"
+    Workaround = "Workaround"
+    TemporaryFix = "TemporaryFix"
+    OfficialFix = "OfficialFix"
+  end
+  
+  module Confidentiality
+    None = "None"
+    Low = "Low"
+    High = "High"
+  end
+  
+  module Integrity
+    None = "None"
+    Low = "Low"
+    High = "High"
+  end
+end
+
 module OperatingSystems
   LINUX   = "Linux"
   MAC_OSX = "Mac OS X"

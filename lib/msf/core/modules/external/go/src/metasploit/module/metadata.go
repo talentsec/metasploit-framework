@@ -37,5 +37,9 @@ type (
 		Payload      map[string]string   `json:"payload,omitempty"`
 		Options      map[string]Option   `json:"options,omitempty"`
 		Notes        map[string][]string `json:"notes,omitempty"`
+
+		Metric        		map[string]interface{} `json:"metric,omitempty"`
+		AffectedVersion   	string `json:"affected_version,omitempty"`
+		Auggestion        	string`json:"suggestion,omitempty"`
 	}
 )

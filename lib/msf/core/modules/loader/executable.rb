@@ -29,7 +29,7 @@ class Msf::Modules::Loader::Executable < Msf::Modules::Loader::Base
   # @return (see Msf::Modules::Loader::Base#each_module_reference_name)
   def each_module_reference_name(path, opts={})
     whitelist = opts[:whitelist] || []
-    ignores = %w{.git}
+    allows = %w{.rb .py .go}
 
     ::Dir.foreach(path) do |entry|
       full_entry_path = ::File.join(path, entry)
@@ -43,8 +43,8 @@ class Msf::Modules::Loader::Executable < Msf::Modules::Loader::Base
 
       # Try to load modules from all the files in the supplied path
       Rex::Find.find(full_entry_path) do |entry_descendant_path|
-        # ignore the specified files which contains keyword
-        next if ignores.any?{ |ignore| entry_descendant_path.include?(ignore) }
+        # allow the specified file suffixes
+        next unless allows.any?{ |allow| entry_descendant_path.end_with?(allow) }
         # Assume that all modules are scripts for now, workaround
         # filesystems where all files are labeled as executable.
         if script_path?(entry_descendant_path)

@@ -54,6 +54,10 @@ class Msf::Modules::External::Shim
     meta[:capabilities]     = mod.meta['capabilities']
     meta[:notes]            = transform_notes(mod.meta['notes'])
 
+    meta[:metric] = mod.meta['metric']&.clone
+    meta[:affected_version] = mod.meta['affected_version']&.dump
+    meta[:suggestion] = mod.meta['suggestion']&.dump
+
     if mod.meta['describe_payload_options'].nil?
       mod.meta['describe_payload_options'] = {}
     end
