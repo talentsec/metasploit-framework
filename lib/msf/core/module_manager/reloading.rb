@@ -28,7 +28,7 @@ module Msf::ModuleManager::Reloading
   # Reloads modules from all module paths
   #
   # @return (see Msf::ModuleManager::Loading#load_modules)
-  def reload_modules
+  def reload_modules(force)
     self.enablement_by_type.each_key do |type|
       module_set_by_type[type].clear
       init_module_set(type)
@@ -40,7 +40,7 @@ module Msf::ModuleManager::Reloading
     count_by_type = Hash.new(0)
 
     module_paths.each do |path|
-      path_count_by_type = load_modules(path, :force => true)
+      path_count_by_type = load_modules(path, :force => force)
 
       # merge count with count from other paths
       path_count_by_type.each do |type, count|

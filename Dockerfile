@@ -59,7 +59,7 @@ ENV METASPLOIT_GROUP=metasploit
 # used for the copy command
 RUN addgroup -S $METASPLOIT_GROUP
 
-RUN apk add --no-cache bash sqlite-libs nmap nmap-scripts nmap-nselibs postgresql-libs python2 python3 py3-pip ncurses libcap su-exec alpine-sdk python2-dev openssl-dev nasm mingw-w64-gcc
+RUN apk add --no-cache bash sqlite-libs nmap nmap-scripts nmap-nselibs postgresql-libs python2 python3 py3-pip ncurses libcap su-exec alpine-sdk python2-dev python3-dev openssl-dev nasm mingw-w64-gcc
 
 RUN /usr/sbin/setcap cap_net_raw,cap_net_bind_service=+eip $(which ruby)
 RUN /usr/sbin/setcap cap_net_raw,cap_net_bind_service=+eip $(which nmap)
@@ -73,8 +73,11 @@ RUN chmod 664 $APP_HOME/Gemfile.lock
 RUN gem update --system
 RUN cp -f $APP_HOME/docker/database.yml $APP_HOME/config/database.yml
 RUN curl -L -O https://github.com/pypa/get-pip/raw/3843bff3a0a61da5b63ea0b7d34794c5c51a2f11/get-pip.py && python get-pip.py && rm get-pip.py
+RUN pip install wheel
 RUN pip install impacket
 RUN pip install requests
+RUN pip install pymongo
+
 
 ENV GOPATH=$TOOLS_HOME/go
 ENV GOROOT=$TOOLS_HOME/bin/go

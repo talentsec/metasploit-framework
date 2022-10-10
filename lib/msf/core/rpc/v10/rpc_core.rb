@@ -92,8 +92,8 @@ class RPC_Core < RPC_Base
   #  * 'payloads' [Integer] The number of payloads reloaded.
   # @example Here's how you would use this from the client:
   #  rpc.call('core.reload_modules')
-  def rpc_reload_modules
-    framework.modules.reload_modules
+  def rpc_reload_modules(force)
+    framework.modules.reload_modules(force)
     rpc_module_stats()
   end
 
