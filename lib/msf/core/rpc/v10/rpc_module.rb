@@ -307,8 +307,8 @@ class RPC_Module < RPC_Base
       }
     end
 
-    res['affected_version'] = m.affected_version
-    res['suggestion'] = m.suggestion
+    res['affected_version'] = m.affected_version&.strip
+    res['suggestion'] = m.suggestion&.strip
 
     res
   end

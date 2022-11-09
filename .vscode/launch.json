@@ -5,20 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "ruby-debug",
+            "type": "rdbg",
+            "name": "msfrpcd",
             "request": "launch",
-            "name": "ruby msfrpcd",
-            "program": "${workspaceFolder}/msfrpcd",
-            "programArgs": ["-P", "123456", "-f", "-S"],
-            "useBundler": false
-        },
-        {
-            "type": "ruby-debug",
-            "request": "launch",
-            "name": "ruby msfconsole",
-            "program": "${workspaceFolder}/msfconsole",
-            "programArgs": ["-q"],
-            "useBundler": false
+            "script": "msfrpcd",
+            "args": ["-P", "123456", "-f", "-S"],
+            "askParameters": false
         }
     ]
 }
