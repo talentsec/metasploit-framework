@@ -293,9 +293,9 @@ class RPC_Module < RPC_Base
 
     unless finger.nil?
       res['finger'] = {
-        'service': metric['Service'],
-        'version': metric['Version'],
-        'srvproto': metric['Srvproto'],
+        'service': finger['Service'],
+        'version': finger['Version'],
+        'srvproto': finger['Srvproto'],
       }
     end
 
