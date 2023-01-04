@@ -47,6 +47,12 @@ module Msf::Module::ModuleInfo
     module_info['Notes']
   end
 
+  #
+  # Return the module's finger
+  #
+  def finger
+    module_info['Finger']
+  end
 
   #
   # Return the module's metric

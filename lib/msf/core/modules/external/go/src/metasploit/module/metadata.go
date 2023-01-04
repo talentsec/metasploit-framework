@@ -38,6 +38,7 @@ type (
 		Options      map[string]Option   `json:"options,omitempty"`
 		Notes        map[string][]string `json:"notes,omitempty"`
 
+        Finger              map[string]interface{} `json:"finger,omitempty"`
 		Metric        		map[string]interface{} `json:"metric,omitempty"`
 		AffectedVersion   	string `json:"affected_version,omitempty"`
 		Auggestion        	string`json:"suggestion,omitempty"`

@@ -54,6 +54,7 @@ class Msf::Modules::External::Shim
     meta[:capabilities]     = mod.meta['capabilities']
     meta[:notes]            = transform_notes(mod.meta['notes'])
 
+    meta[:finger] = mod.meta['finger']&.clone
     meta[:metric] = mod.meta['metric']&.clone
     meta[:affected_version] = mod.meta['affected_version']&.dump
     meta[:suggestion] = mod.meta['suggestion']&.dump

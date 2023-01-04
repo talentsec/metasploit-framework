@@ -54,7 +54,9 @@ class Obj
   alias :default_cred? :default_credential # Mirror the Module class
   # @return [Hash]
   attr_reader :notes
-   # @return [Hash]
+  # @return [Hash]
+  attr_reader :finger
+  # @return [Hash]
   attr_reader :metric
   # @return [String]
   attr_reader :affected_version
@@ -114,6 +116,7 @@ class Obj
 
     @notes = module_instance.notes
 
+    @finger = module_instance.finger
     @metric = module_instance.metric
     @affected_version = module_instance.affected_version
     @suggestion = module_instance.suggestion
@@ -155,6 +158,7 @@ class Obj
       'session_types'      => @session_types,
       'needs_cleanup'      => @needs_cleanup,
 
+      'finger'             => @finger,
       'metric'             => @metric,
       'affected_version'   => @affected_version,
       'suggestion'         => @suggestion
@@ -209,6 +213,7 @@ class Obj
     @needs_cleanup      = obj_hash['needs_cleanup']
     @session_types      = obj_hash['session_types']
 
+    @finger             = obj_hash['finger']
     @metric             = obj_hash['metric']
     @affected_version   = obj_hash['affected_version']
     @suggestion         = obj_hash['suggestion']

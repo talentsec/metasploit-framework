@@ -289,6 +289,16 @@ class RPC_Module < RPC_Base
     end
     res['options'] = opts
 
+    finger = m.finger
+
+    unless finger.nil?
+      res['finger'] = {
+        'service': metric['Service'],
+        'version': metric['Version'],
+        'srvproto': metric['Srvproto'],
+      }
+    end
+
     metric = m.metric
 
     unless metric.nil?
