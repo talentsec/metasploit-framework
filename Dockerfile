@@ -78,7 +78,7 @@ RUN pip install wheel
 RUN pip install impacket
 RUN pip install requests
 RUN pip install pymongo
-RUN pip install python-nmap
+RUN pip3 install python-nmap
 
 ENV GOPATH=$TOOLS_HOME/go
 ENV GOROOT=$TOOLS_HOME/bin/go
