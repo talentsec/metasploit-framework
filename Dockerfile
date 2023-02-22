@@ -41,6 +41,7 @@ RUN apk add --no-cache \
     # needed so non root users can read content of the bundle
     && chmod -R a+r /usr/local/bundle
 
+ENV GO111MODULE=off
 RUN mkdir -p $TOOLS_HOME/bin && \
     cd $TOOLS_HOME/bin && \
     curl -O https://dl.google.com/go/go1.11.2.src.tar.gz && \
@@ -60,7 +61,9 @@ ENV METASPLOIT_GROUP=metasploit
 # used for the copy command
 RUN addgroup -S $METASPLOIT_GROUP
 
-RUN apk add --no-cache bash sqlite-libs nmap nmap-scripts nmap-nselibs postgresql-libs python2 python3 py3-pip ncurses libcap su-exec alpine-sdk python2-dev python3-dev openssl-dev nasm mingw-w64-gcc
+RUN apk add --no-cache bash sqlite-libs nmap nmap-scripts nmap-nselibs \
+    postgresql-libs python2 python3 py3-pip ncurses libcap su-exec alpine-sdk \
+    python2-dev python3-dev openssl-dev nasm mingw-w64-gcc
 
 RUN /usr/sbin/setcap cap_net_raw,cap_net_bind_service=+eip $(which ruby)
 RUN /usr/sbin/setcap cap_net_raw,cap_net_bind_service=+eip $(which nmap)
