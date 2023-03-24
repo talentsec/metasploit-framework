@@ -86,7 +86,6 @@ RUN pip install impacket
 RUN pip install requests
 RUN pip install pymongo
 RUN pip3 install python-nmap
-RUN pip3 install nmap
 RUN pip3 install pycryptodomex
 RUN pip3 install pymongo
 RUN pip3 install beautifulsoup4
