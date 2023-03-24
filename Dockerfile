@@ -64,6 +64,10 @@ RUN addgroup -S $METASPLOIT_GROUP
 RUN apk add --no-cache bash sqlite-libs nmap nmap-scripts nmap-nselibs \
     postgresql-libs python2 python3 py3-pip ncurses libcap su-exec alpine-sdk \
     python2-dev python3-dev openssl-dev nasm mingw-w64-gcc
+RUN apk add --no-cache libxslt
+RUN apk add --no-cache libxml2
+RUN apk add --no-cache libxslt-dev
+RUN apk add --no-cache bind-tools
 
 RUN /usr/sbin/setcap cap_net_raw,cap_net_bind_service=+eip $(which ruby)
 RUN /usr/sbin/setcap cap_net_raw,cap_net_bind_service=+eip $(which nmap)
@@ -82,7 +86,11 @@ RUN pip install impacket
 RUN pip install requests
 RUN pip install pymongo
 RUN pip3 install python-nmap
-
+RUN pip3 install nmap
+RUN pip3 install pycryptodomex
+RUN pip3 install pymongo
+RUN pip3 install beautifulsoup4
+RUN pip3 install lxml
 
 ENV GOPATH=$TOOLS_HOME/go
 ENV GOROOT=$TOOLS_HOME/bin/go
