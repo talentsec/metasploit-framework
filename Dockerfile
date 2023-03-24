@@ -68,6 +68,7 @@ RUN apk add --no-cache libxslt
 RUN apk add --no-cache libxml2
 RUN apk add --no-cache libxslt-dev
 RUN apk add --no-cache bind-tools
+RUN apk add --no-cache net-snmp-tools
 
 RUN /usr/sbin/setcap cap_net_raw,cap_net_bind_service=+eip $(which ruby)
 RUN /usr/sbin/setcap cap_net_raw,cap_net_bind_service=+eip $(which nmap)
@@ -90,6 +91,7 @@ RUN pip3 install pycryptodomex
 RUN pip3 install pymongo
 RUN pip3 install beautifulsoup4
 RUN pip3 install lxml
+RUN pip3 install tftppy
 
 ENV GOPATH=$TOOLS_HOME/go
 ENV GOROOT=$TOOLS_HOME/bin/go
