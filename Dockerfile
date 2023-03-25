@@ -91,7 +91,7 @@ RUN pip3 install pycryptodomex
 RUN pip3 install pymongo
 RUN pip3 install beautifulsoup4
 RUN pip3 install lxml
-RUN pip3 install tftppy
+RUN pip3 install tftpy
 
 ENV GOPATH=$TOOLS_HOME/go
 ENV GOROOT=$TOOLS_HOME/bin/go
